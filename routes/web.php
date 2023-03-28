@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
+use App\http\Controllers\UserController;
 use Inertia\Inertia;
 
 /*
@@ -29,9 +31,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/contact', function () {
-    return Inertia::render('Contact');
-})->name('contact');
+Route::get('/contact', [PagesController::class, "contacto"])->name('contact');
+Route::resource('user',UserController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
