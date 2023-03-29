@@ -3,12 +3,15 @@ import React from "react";
 function UserShow(props) {
     return (
         <div>
-            Hola
-            <p>
-                {props.usuario[0].name}
-                {props.usuario[0].email}
-                {props.usuario[0].id}
-            </p>
+            <h1>UserShowView</h1>
+
+            {props?.usuario[0] ? (
+                <span>
+                    {props.usuario[0].name}
+                </span> /* Los span >>>>> p  (segun mario(según iván maestro frontend)) */
+            ) : (
+                <span>No hay usuario</span>
+            )}
         </div>
     );
 }
