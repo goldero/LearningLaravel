@@ -1,11 +1,13 @@
 import React from "react";
 import { usePage } from "@inertiajs/react";
+import { Button } from "@mui/material";
+import NavBar from "./NavBar";
 
 function Header() {
     const { auth } = usePage().props;
     return (
-        <header className="bg-pink-500">
-            <p>You are logged in as: {auth.user.name}</p>
+        <header>
+            <NavBar />
         </header>
     );
 }
