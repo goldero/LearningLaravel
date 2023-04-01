@@ -13,9 +13,11 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { usePage, Link } from "@inertiajs/react";
+import Stack from "@mui/material/Stack";
+import { Divider } from "@mui/material";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["products", "pricing", "blog"];
+const settings = ["profile", "account", "dashboard"];
 
 function NavBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,7 +40,7 @@ function NavBar() {
     const { auth } = usePage().props;
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" color="inherit">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon
@@ -48,7 +50,6 @@ function NavBar() {
                         variant="h6"
                         noWrap
                         component="a"
-                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: "none", md: "flex" },
@@ -59,7 +60,7 @@ function NavBar() {
                             textDecoration: "none",
                         }}
                     >
-                        LOGO
+                        <Link href={route("welcome")}>LOGO</Link>
                     </Typography>
                     <Box
                         sx={{
@@ -134,68 +135,91 @@ function NavBar() {
                             display: { xs: "none", md: "flex" },
                         }}
                     >
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: "white", display: "block" }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
-                    </Box>
-                    {auth?.user ? (
-                        <p>You are logged in as: {auth.user.name}</p>
-                    ) : (
-                        <div>
-                            <Button variant="filled">
-                                <Link href={route("login")}>Login</Link>
-                            </Button>
-                            <Button variant="filled">
-                                <Link href={route("register")}>Register</Link>
-                            </Button>
-                        </div>
-                    )}
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton
-                                onClick={handleOpenUserMenu}
-                                sx={{ p: 0 }}
-                            >
-                                <Avatar
-                                    alt="Gemy Sharp"
-                                    src="/static/images/avatar/2.jpg"
-                                />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: "45px" }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}
+                        {pages.map(
+                            (
+                                page /* menú de la izquierda, cuando está en telefono se "pliega" y en pc está en la navbar */
+                            ) => (
+                                <Button
+                                    key={page}
+                                    onClick={handleCloseNavMenu}
+                                    sx={{
+                                        my: 2,
+                                        color: "primary",
+                                        display: "block",
+                                    }}
                                 >
-                                    <Typography textAlign="center">
-                                        {setting}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                                    {page}
+                                </Button>
+                            )
+                        )}
                     </Box>
+                    {auth?.user /* Si el usuario esta logeado sale el icono con su menú */ ? (
+                        <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <IconButton
+                                    onClick={handleOpenUserMenu}
+                                    sx={{ p: 0 }}
+                                >
+                                    <Avatar
+                                        alt="Gemy Sharp"
+                                        src="/static/images/avatar/2.jpg"
+                                    />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: "45px" }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: "top",
+                                    horizontal: "right",
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: "top",
+                                    horizontal: "right",
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                {settings.map((setting) => (
+                                    <MenuItem
+                                        key={setting}
+                                        onClick={handleCloseUserMenu}
+                                    >
+                                        <Typography
+                                            textAlign="center"
+                                            className="first-letter:uppercase"
+                                        >
+                                            <Link href={`${setting}`}>
+                                                {setting}
+                                            </Link>
+                                        </Typography>
+                                    </MenuItem>
+                                ))}
+                                <Divider />
+                                <MenuItem>
+                                    <Link
+                                        method="post"
+                                        href={route("logout")}
+                                        as="button"
+                                    >
+                                        Logout
+                                    </Link>
+                                </MenuItem>
+                            </Menu>
+                        </Box>
+                    ) : (
+                        <Stack direction={"row"} spacing={0.5}>
+                            {/* Si el usuario no esta logeado, sale el login/register */}
+                            <Link as="button" href={route("login")}>
+                                Login
+                            </Link>
+                            <Link as="button" href={route("register")}>
+                                Register
+                            </Link>
+                        </Stack>
+                    )}
                 </Toolbar>
             </Container>
         </AppBar>
