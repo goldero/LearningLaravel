@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 function Header() {
     const { auth } = usePage().props;
     return (
-        <header>
+        <header className="sticky top-0 mb-2">
             <NavBar />
         </header>
     );
