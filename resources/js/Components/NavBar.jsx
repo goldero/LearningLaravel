@@ -15,8 +15,9 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { usePage, Link } from "@inertiajs/react";
 import Stack from "@mui/material/Stack";
 import { Divider } from "@mui/material";
+import Language from "./Language";
 
-const pages = ["products", "pricing", "blog"];
+const pages = ["Projects", "pricing"];
 const settings = ["profile", "account", "dashboard"];
 
 function NavBar() {
@@ -49,7 +50,6 @@ function NavBar() {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
                         sx={{
                             mr: 2,
                             display: { xs: "none", md: "flex" },
@@ -113,8 +113,6 @@ function NavBar() {
                     />
                     <Typography
                         variant="h5"
-                        noWrap
-                        component="a"
                         href=""
                         sx={{
                             mr: 2,
@@ -127,7 +125,7 @@ function NavBar() {
                             textDecoration: "none",
                         }}
                     >
-                        LOGO
+                        <Link href={route("welcome")}>Logo</Link>
                     </Typography>
                     <Box
                         sx={{
@@ -210,7 +208,7 @@ function NavBar() {
                             </Menu>
                         </Box>
                     ) : (
-                        <Stack direction={"row"} spacing={0.5}>
+                        <Stack direction={"row"} spacing={1}>
                             {/* Si el usuario no esta logeado, sale el login/register */}
                             <Link as="button" href={route("login")}>
                                 Login
@@ -220,6 +218,8 @@ function NavBar() {
                             </Link>
                         </Stack>
                     )}
+                    <Language />
+                    {/* Selector de lenguage */}
                 </Toolbar>
             </Container>
         </AppBar>
