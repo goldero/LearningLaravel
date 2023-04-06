@@ -17,7 +17,7 @@ import Stack from "@mui/material/Stack";
 import { Divider } from "@mui/material";
 import Language from "./Language";
 
-const pages = ["Projects", "pricing"];
+const pages = ["projects", "pricing"];
 const settings = ["profile", "account", "dashboard"];
 
 function NavBar() {
@@ -97,7 +97,7 @@ function NavBar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem
+                                <MenuItem /* El mismo menú de la izquierda pero para telefono */
                                     key={page}
                                     onClick={handleCloseNavMenu}
                                 >
@@ -137,17 +137,19 @@ function NavBar() {
                             (
                                 page /* menú de la izquierda, cuando está en telefono se "pliega" y en pc está en la navbar */
                             ) => (
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{
-                                        my: 2,
-                                        color: "primary",
-                                        display: "block",
-                                    }}
-                                >
-                                    {page}
-                                </Button>
+                                <Link href={`${page}`} key={page}>
+                                    <Button
+                                        key={page}
+                                        onClick={handleCloseNavMenu}
+                                        sx={{
+                                            my: 2,
+                                            color: "primary",
+                                            display: "block",
+                                        }}
+                                    >
+                                        {page}
+                                    </Button>
+                                </Link>
                             )
                         )}
                     </Box>

@@ -32,6 +32,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/contact', [PagesController::class, "contacto"])->name('contact');
+Route::get('/projects', [PagesController::class, "proyectos"])->name('projects');
+
 Route::resource('user',UserController::class);
 
 Route::middleware('auth')->group(function () {

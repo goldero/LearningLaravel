@@ -2,11 +2,14 @@ import React from "react";
 import Foto from "../../assets/images/Foto-prof.jpeg";
 import { Stack } from "@mui/material";
 import IconReact from "../../assets/images/React-icon.png";
-import Lang from "lang.js";
+import { useTranslation } from "react-i18next";
 
 function Welcome() {
+    const { t, i18n } = useTranslation();
+
     return (
         <main className="bg-gradient-to-b from-cyan-300 to-blue-400 h-screen flex justify-center items-center text-center">
+            <pre>{t("title")}</pre>
             <article className="max-w-xl">
                 <span className="font-bold text-3xl">David Goldero</span>
                 <img
