@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\http\Controllers\UserController;
+use App\http\Controllers\CarController;
 use Inertia\Inertia;
 
 /*
@@ -32,7 +33,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/contact', [PagesController::class, "contacto"])->name('contact');
+
+/*                                 PROYECTOS                              */
 Route::get('/projects', [PagesController::class, "proyectos"])->name('projects');
+Route::get('/projects/car', [CarController::class, "index"])->name('carProject');
+/*                                      CarsProject                                  */
+
+
+
 
 Route::resource('user',UserController::class);
 

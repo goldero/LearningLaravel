@@ -6,16 +6,25 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Link, router } from "@inertiajs/react";
 
 function Pindex() {
-    const proyectos = ["proyecto gatos", "proyecto de perros"];
+    const proyectos = ["proyecto gatos", "proyecto de perros", "carProject"];
+    function handleClick(e) {
+        e.preventDefault();
+        router.visit("projects/car");
+    }
 
     return (
         <main className="bg-gradient-to-b from-cyan-300 to-blue-400 h-screen flex justify-center items-center text-center">
             <article>
                 <Grid container>
                     {proyectos.map((proyecto) => (
-                        <Card sx={{ minWidth: 275 }} key={proyecto}>
+                        <Card
+                            sx={{ minWidth: 275 }}
+                            key={proyecto}
+                            onClick={(e) => handleClick(e)}
+                        >
                             <CardContent>
                                 <Typography
                                     sx={{ fontSize: 14 }}

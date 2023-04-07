@@ -50,10 +50,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $usuario = User::where('id',$id)->get();
+
+       
+         /*  $usuario = User::where('id',$id)->get(); */
         /* $usuario = json_encode($usuario); */
-        return Inertia::render('User/UserShow', ['usuario' => $usuario]);
-        
+       /*   return Inertia::render('User/UserShow', ['usuario' => $usuario]); */
+        return User::find(2);
         //
     }
 

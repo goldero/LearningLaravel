@@ -191,7 +191,7 @@ function NavBar() {
                                             textAlign="center"
                                             className="first-letter:uppercase"
                                         >
-                                            <Link href={`${setting}`}>
+                                            <Link href={route(`${setting}`)}>
                                                 {setting}
                                             </Link>
                                         </Typography>
