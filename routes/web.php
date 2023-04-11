@@ -37,6 +37,7 @@ Route::get('/contact', [PagesController::class, "contacto"])->name('contact');
 /*                                 PROYECTOS                              */
 Route::get('/projects', [PagesController::class, "proyectos"])->name('projects');
 Route::get('/projects/car', [CarController::class, "index"])->name('carProject');
+Route::get('/projects/car/{id}', [CarController::class, "show"])->name('carShow');
 /*                                      CarsProject                                  */
 
 
