@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { usePage, Link } from "@inertiajs/react";
+import { usePage, Link, router } from "@inertiajs/react";
 import Stack from "@mui/material/Stack";
 import { Divider } from "@mui/material";
 import Language from "./Language";
@@ -38,6 +38,10 @@ function NavBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    function handleClickLink(e, key) {
+        e.preventDefault();
+        router.visit(key);
+    }
     const { auth } = usePage().props;
 
     return (
@@ -59,8 +63,9 @@ function NavBar() {
                             color: "inherit",
                             textDecoration: "none",
                         }}
+                        onClick={(e) => handleClickLink(e, "/")}
                     >
-                        <Link href={route("welcome")}>LOGO</Link>
+                        LOGO
                     </Typography>
                     <Box
                         sx={{
