@@ -49,85 +49,42 @@ export default function CarShow({ car }) {
     }));
     /* Quiero hacer una carta que tenga una imagen del coche y que al desplegar, enseñe una tabla con información (marca tipo y tal) */
     return (
-        <div className="flex items-center flex-col">
-            <p>hola soy el show del coche: {car[0].id}</p>
-            <Card sx={{ maxWidth: 500 }}>
-                <CardHeader title={`Coche número ${car[0].id}`}></CardHeader>
-                <div className="flex items-center flex-col">
-                    <TableContainer
-                        component={Paper}
-                        className="max-w-fit my-4"
-                    >
-                        <Table
-                            aria-label="simple table"
-                            className="self-center max-w-xs"
-                        >
-                            <TableHead>
-                                <StyledTableRow>
-                                    <StyledTableCell>
-                                        {t("cars.brand")}
-                                    </StyledTableCell>
-                                    <StyledTableCell align="right">
-                                        {t("cars.model")}
-                                    </StyledTableCell>
-                                    <StyledTableCell align="right">
-                                        {t("cars.type")}
-                                    </StyledTableCell>
-                                    <StyledTableCell align="right">
-                                        {t("cars.doors")}
-                                    </StyledTableCell>
-                                    <StyledTableCell align="right">
-                                        {t("cars.year")}
-                                    </StyledTableCell>
-                                    <StyledTableCell align="right">
-                                        {t("cars.fuel")}
-                                    </StyledTableCell>
-                                </StyledTableRow>
-                            </TableHead>
-                            <TableBody>
-                                {car.map((row) => (
-                                    <StyledTableRow
-                                        hover
-                                        key={row.id}
-                                        sx={{
-                                            "&:last-child td, &:last-child th":
-                                                {
-                                                    border: 0,
-                                                },
-                                        }}
-                                    >
-                                        <TableCell component="th" scope="row">
-                                            {row.brand}
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            {row.model}
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            {row.type}
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            {row.doors}
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            {row.year}
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            {row.fuel}
-                                        </TableCell>
-                                    </StyledTableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </div>
-                <CardMedia /* Foto de coche :D */
-                    component="img"
-                    height="194"
-                    image="/storage/photos/noCar.png"
-                    alt={`${car[0].brand} ${car[0].model}`}
-                />
-                {/* Tabla de coche */}
-            </Card>
-        </div>
+        <main className=" text-center min-h-screen flex items-center justify-center flex-row">
+            <article className=" m-10 flex flex-row">
+                <Card className="max-w-md m-5" elevation={6}>
+                    <CardHeader
+                        title={`Coche ${car[0].id}`}
+                        /* className="text-center" */
+                    ></CardHeader>
+                    <CardMedia /* Foto de coche :D */
+                        component="img"
+                        image="/storage/photos/noCar.png"
+                        alt={`${car[0].brand} ${car[0].model}`}
+                    />
+                </Card>
+            </article>
+            <article className=" m-10 flex-column">
+                <Paper className="m-2 px-5">
+                    <h2 className="font-bold">Marca:</h2>
+                    <p>{car[0].brand}</p>
+                </Paper>
+                <Paper className="m-2 px-5">
+                    <h2 className="font-bold">Modelo:</h2>
+                    <p>{car[0].model}</p>
+                </Paper>
+                <Paper className="m-2 px-5">
+                    <h2 className="font-bold">Fecha:</h2>
+                    <p>{car[0].year}</p>
+                </Paper>
+                <Paper className="m-2 px-5">
+                    <h2 className="font-bold">Puertas:</h2>
+                    <p>{car[0].doors}</p>
+                </Paper>
+                <Paper className="m-2 px-5">
+                    <h2 className="font-bold">Motor:</h2>
+                    <p>{car[0].fuel}</p>
+                </Paper>
+            </article>
+        </main>
     );
 }

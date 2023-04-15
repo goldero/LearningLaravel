@@ -43,68 +43,82 @@ export default function CarIndex({ cars }) {
     }));
 
     return (
-        <div className="flex items-center flex-col">
-            <TableContainer component={Paper} className="max-w-fit my-4">
-                <Table
-                    aria-label="simple table"
-                    className="self-center max-w-xs"
-                >
-                    <TableHead>
-                        <StyledTableRow>
-                            <StyledTableCell>{t("cars.brand")}</StyledTableCell>
-                            <StyledTableCell align="right">
-                                {t("cars.model")}
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                {t("cars.type")}
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                {t("cars.doors")}
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                {t("cars.year")}
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                {t("cars.fuel")}
-                            </StyledTableCell>
-                        </StyledTableRow>
-                    </TableHead>
-                    <TableBody>
-                        {cars.data.map((row) => (
-                            <StyledTableRow
-                                hover
-                                key={row.id}
-                                sx={{
-                                    "&:last-child td, &:last-child th": {
-                                        border: 0,
-                                    },
-                                }}
-                                onClick={() => {
-                                    router.visit(
-                                        route("carShow", { id: row.id })
-                                    );
-                                }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {row.brand}
-                                </TableCell>
-                                <TableCell align="right">{row.model}</TableCell>
-                                <TableCell align="right">{row.type}</TableCell>
-                                <TableCell align="right">{row.doors}</TableCell>
-                                <TableCell align="right">{row.year}</TableCell>
-                                <TableCell align="right">{row.fuel}</TableCell>
+        <main>
+            <div className="flex items-center flex-col">
+                <TableContainer component={Paper} className="max-w-fit my-4">
+                    <Table
+                        aria-label="simple table"
+                        className="self-center max-w-xs"
+                    >
+                        <TableHead>
+                            <StyledTableRow>
+                                <StyledTableCell>
+                                    {t("cars.brand")}
+                                </StyledTableCell>
+                                <StyledTableCell align="right">
+                                    {t("cars.model")}
+                                </StyledTableCell>
+                                <StyledTableCell align="right">
+                                    {t("cars.type")}
+                                </StyledTableCell>
+                                <StyledTableCell align="right">
+                                    {t("cars.doors")}
+                                </StyledTableCell>
+                                <StyledTableCell align="right">
+                                    {t("cars.year")}
+                                </StyledTableCell>
+                                <StyledTableCell align="right">
+                                    {t("cars.fuel")}
+                                </StyledTableCell>
                             </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-                <Pagination
-                    count={10}
-                    page={page}
-                    onChange={handleChange}
-                    className="flex justify-center mb-2
-            "
-                />
-            </TableContainer>
-        </div>
+                        </TableHead>
+                        <TableBody>
+                            {cars.data.map((row) => (
+                                <StyledTableRow
+                                    hover
+                                    key={row.id}
+                                    sx={{
+                                        "&:last-child td, &:last-child th": {
+                                            border: 0,
+                                        },
+                                    }}
+                                    onClick={() => {
+                                        router.visit(
+                                            route("carShow", { id: row.id })
+                                        );
+                                    }}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        {row.brand}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {row.model}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {row.type}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {row.doors}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {row.year}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {row.fuel}
+                                    </TableCell>
+                                </StyledTableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                    <Pagination
+                        count={10}
+                        page={page}
+                        onChange={handleChange}
+                        className="flex justify-center mb-2
+                    "
+                    />
+                </TableContainer>
+            </div>
+        </main>
     );
 }

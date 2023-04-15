@@ -17,7 +17,7 @@ import Stack from "@mui/material/Stack";
 import { Divider } from "@mui/material";
 import Language from "./Language";
 
-const pages = ["projects", "pricing"];
+const pages = ["projects"];
 const settings = ["profile", "account", "dashboard"];
 
 function NavBar() {
@@ -118,7 +118,6 @@ function NavBar() {
                     />
                     <Typography
                         variant="h5"
-                        href=""
                         sx={{
                             mr: 2,
                             display: { xs: "flex", md: "none" },
@@ -142,7 +141,7 @@ function NavBar() {
                             (
                                 page /* menú de la izquierda, cuando está en telefono se "pliega" y en pc está en la navbar */
                             ) => (
-                                <Link href={`${page}`} key={page}>
+                                <Link href={route(`${page}`)} key={page}>
                                     <Button
                                         key={page}
                                         onClick={handleCloseNavMenu}
